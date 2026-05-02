@@ -22,7 +22,7 @@
       "volume_liters": null,
       "stackable": true,
       "divisible": true,
-      "description": "Cellulose-rich plant material harvested from forested biomes or produced renewably by the Arboretum 5 m. Burns directly in Coal Power's Combustion Generator at ~15% efficiency; refines into charcoal via pyrolysis (2 wood → 1 charcoal via Smelter 2.5 m) for a much higher combustion efficiency.",
+      "description": "Cellulose-rich plant material. In the wild, mature trees on forested biomes drop wood when felled — v0.1 accepts vanilla drilling as a temporary harvesting mechanic; a dedicated forestry tool (chainsaw / logging harvester) is deferred to a future mod. Alternatively produced renewably by the Arboretum 5 m. Burns directly in Coal Power's Combustion Generator at ~15% efficiency; refines into charcoal via pyrolysis (2 wood → 1 charcoal via Smelter 2.5 m) for a much higher combustion efficiency.",
       "gameStatus": "active",
       "locations": {
         "planets": [
@@ -37,7 +37,8 @@
       "dataGaps": [
         "volume_liters",
         "biome-placement-first-pass",
-        "wiki-not-yet-authored"
+        "wiki-not-yet-authored",
+        "harvesting-tool-deferred-to-future-mod"
       ]
     }
   ]
