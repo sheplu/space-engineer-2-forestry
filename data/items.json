@@ -1,0 +1,96 @@
+{
+  "version": "0.1.0",
+  "generatedAt": "2026-05-02",
+  "game": {
+    "name": "Space Engineers 2",
+    "stage": "Early Access",
+    "dataAsOf": "2026-05-02"
+  },
+  "mod": {
+    "name": "Forestry",
+    "version": "0.1.0",
+    "baseGameDataVersion": "1.1.0"
+  },
+  "sources": [],
+  "notes": "Charcoal is produced by pyrolysis (heating wood in the absence of oxygen) — modeled via the vanilla Smelter 2.5 m, same pattern as Stone & Concrete reusing the Smelter as a kiln. Fruits and resin are renewable byproducts of the Arboretum 5 m; they exist primarily as forward-hooks to future Food and Plastics mods (no consumer in v0.1, but machine-discoverable via their `producedBy` strings). Wood ash forward-references Stone & Concrete's Cement, mirroring the coal-ash pattern.\n\nEnergy math: wood direct burn 6 kW × 27s = 162 kJ/unit; charcoal 18 kW × 30s = 540 kJ/unit; refining ratio 2 wood → 1 charcoal gives 324 kJ direct vs 540 kJ refined → +67% energy recovery, matching real-world charcoal economics.",
+  "resources": [
+    {
+      "id": "charcoal",
+      "displayName": "Charcoal",
+      "type": "refinery_product",
+      "mass_kg": 1,
+      "volume_liters": null,
+      "stackable": true,
+      "divisible": false,
+      "description": "Carbonized wood produced by pyrolysis in the Smelter 2.5 m. Chemically similar to anthracite coal — burns cleanly in Coal Power's Combustion Generator 2.5 m at ~40% efficiency (matching coal briquette performance). Two wood yield one charcoal: the mass loss is water and volatiles driven off during pyrolysis.",
+      "gameStatus": "active",
+      "recipes": [
+        {
+          "producedBy": "Smelter 2.5 m",
+          "ingredients": [{ "id": "wood", "qty": 2 }],
+          "producesQty": 1,
+          "craftingTimeSeconds": 1.0
+        }
+      ],
+      "usedIn": ["Combustion Generator 2.5 m"],
+      "wiki": "https://github.com/sheplu/space-engineer-2-forestry",
+      "dataGaps": ["volume_liters", "balance-vs-coal-briquette"]
+    },
+    {
+      "id": "fruits",
+      "displayName": "Fruits",
+      "type": "simple_component",
+      "mass_kg": 1,
+      "volume_liters": null,
+      "stackable": true,
+      "divisible": false,
+      "description": "Edible plant produce — apples, berries, and stone fruits growing on mature trees. Produced renewably by the Arboretum 5 m alongside wood and resin. Forward-looking: a future Food mod can consume fruits directly (raw ration) or as an ingredient in prepared-food recipes. In v0.1 this is a declarative hook only — no Food mod exists yet.",
+      "gameStatus": "active",
+      "producedBy": "Arboretum 5 m (renewable byproduct of tree cultivation)",
+      "usedIn": [],
+      "wiki": "https://github.com/sheplu/space-engineer-2-forestry",
+      "dataGaps": [
+        "volume_liters",
+        "food-mod-does-not-yet-exist",
+        "usedIn-empty-until-food-mod-ships"
+      ]
+    },
+    {
+      "id": "resin",
+      "displayName": "Resin",
+      "type": "simple_component",
+      "mass_kg": 1,
+      "volume_liters": null,
+      "stackable": true,
+      "divisible": false,
+      "description": "Viscous tree sap harvested from mature trees. Real-world feedstock for bio-plastics (polylactic acid analogues), varnishes, and adhesives. Produced renewably by the Arboretum 5 m alongside wood and fruits. Forward-looking: a future Plastics mod can consume resin as the bio-plastic feedstock pathway (alongside petroleum-derived naphtha as the petro-plastic pathway). In v0.1 this is a declarative hook only — no Plastics mod exists yet.",
+      "gameStatus": "active",
+      "producedBy": "Arboretum 5 m (renewable byproduct of tree cultivation)",
+      "usedIn": [],
+      "wiki": "https://github.com/sheplu/space-engineer-2-forestry",
+      "dataGaps": [
+        "volume_liters",
+        "plastics-mod-does-not-yet-exist",
+        "usedIn-empty-until-plastics-mod-ships"
+      ]
+    },
+    {
+      "id": "wood_ash",
+      "displayName": "Wood Ash",
+      "type": "simple_component",
+      "mass_kg": 2,
+      "volume_liters": null,
+      "stackable": true,
+      "divisible": false,
+      "description": "Fine mineral residue left after wood or charcoal is consumed in Coal Power's Combustion Generator 2.5 m. Real-world wood ash is a supplementary cementitious material (mildly pozzolanic — not as strong as fly ash from coal but still usable). Forward-looking: a future revision of Stone & Concrete's Cement recipe can optionally accept wood ash alongside coal ash and stone powder. In v0.1 this is metadata only; Stone & Concrete is unchanged.",
+      "gameStatus": "active",
+      "producedBy": "Combustion Generator 2.5 m (byproduct of burning wood or charcoal)",
+      "usedIn": ["Cement"],
+      "wiki": "https://github.com/sheplu/space-engineer-2-forestry",
+      "dataGaps": [
+        "volume_liters",
+        "cement-recipe-extension-is-declarative-only"
+      ]
+    }
+  ]
+}

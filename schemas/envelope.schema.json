@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/sheplu/space-engineer-2-forestry/main/schemas/envelope.schema.json",
+  "title": "SE2 Forestry Dataset Envelope",
+  "description": "Shared wrapper for every dataset file in this mod. `resources` is defined as a non-empty array but the per-record shape is validated by a record schema.",
+  "type": "object",
+  "required": ["version", "generatedAt", "game", "mod", "resources"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date"
+    },
+    "game": {
+      "type": "object",
+      "required": ["name", "stage", "dataAsOf"],
+      "properties": {
+        "name": { "type": "string" },
+        "stage": { "type": "string" },
+        "dataAsOf": { "type": "string", "format": "date" }
+      }
+    },
+    "mod": {
+      "type": "object",
+      "required": ["name", "version"],
+      "properties": {
+        "name": { "type": "string" },
+        "version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "baseGameDataVersion": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": { "type": "string", "format": "uri" }
+    },
+    "notes": {
+      "type": "string"
+    },
+    "resources": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "object" }
+    }
+  }
+}

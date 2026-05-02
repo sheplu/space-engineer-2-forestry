@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/sheplu/space-engineer-2-forestry/main/schemas/resource-item.schema.json",
+  "title": "SE2 Craftable Item Record",
+  "description": "Record shape for craftable non-block items: refinery products, simple/complex/high-tech components, character gear, ammunition, power cells. Some type-specific fields (subcategory for gear, roundsPerUnit/usedBy for ammo, capacity for power cells) are optional.",
+  "type": "object",
+  "required": [
+    "id",
+    "displayName",
+    "type",
+    "mass_kg",
+    "volume_liters",
+    "stackable",
+    "divisible",
+    "description",
+    "gameStatus",
+    "wiki",
+    "dataGaps"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9_]+$" },
+    "displayName": { "type": "string" },
+    "type": {
+      "type": "string",
+      "enum": [
+        "refinery_product",
+        "simple_component",
+        "complex_component",
+        "high_tech_component",
+        "character_gear",
+        "ammunition",
+        "power_cell"
+      ]
+    },
+    "subcategory": {
+      "type": "string",
+      "description": "Present on character-gear records. Values: tool, weapon, consumable.",
+      "enum": ["tool", "weapon", "consumable"]
+    },
+    "mass_kg": { "type": ["number", "null"], "minimum": 0 },
+    "volume_liters": { "type": ["number", "null"], "minimum": 0 },
+    "stackable": { "type": "boolean" },
+    "divisible": { "type": "boolean" },
+    "description": { "type": ["string", "null"] },
+    "gameStatus": {
+      "type": "string",
+      "enum": ["active", "disabled", "planned"]
+    },
+    "recipes": {
+      "type": "array",
+      "description": "Production paths. Items can have multiple recipes (e.g. Smelter + Backpack).",
+      "items": {
+        "type": "object",
+        "required": ["producedBy", "ingredients", "producesQty", "craftingTimeSeconds"],
+        "properties": {
+          "producedBy": { "type": "string" },
+          "ingredients": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["id", "qty"],
+              "properties": {
+                "id": { "type": "string", "pattern": "^[a-z0-9_]+$" },
+                "qty": { "type": "number", "minimum": 0 }
+              }
+            }
+          },
+          "producesQty": { "type": ["number", "null"], "minimum": 0 },
+          "craftingTimeSeconds": { "type": ["number", "null"], "minimum": 0 }
+        }
+      }
+    },
+    "usedIn": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Downstream recipe names or block names that consume this item."
+    },
+    "usedBy": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Present on ammunition records — block ids of weapons that consume this ammo."
+    },
+    "roundsPerUnit": {
+      "type": ["integer", "null"],
+      "minimum": 0,
+      "description": "Present on ammunition records — projectiles per inventory stack."
+    },
+    "capacity": {
+      "type": "object",
+      "description": "Present on power_cell records.",
+      "required": ["value", "unitAsPublished"],
+      "properties": {
+        "value": { "type": ["number", "null"] },
+        "unitAsPublished": { "type": ["string", "null"] }
+      }
+    },
+    "producedBy": {
+      "type": ["string", "null"],
+      "description": "Free-form producer note when the item isn't directly craftable (e.g. power cells). null when unknown."
+    },
+    "wiki": { "type": "string", "format": "uri" },
+    "dataGaps": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}
