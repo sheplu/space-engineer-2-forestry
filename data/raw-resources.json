@@ -1,0 +1,44 @@
+{
+  "version": "0.1.0",
+  "generatedAt": "2026-05-02",
+  "game": {
+    "name": "Space Engineers 2",
+    "stage": "Early Access",
+    "dataAsOf": "2026-05-02"
+  },
+  "mod": {
+    "name": "Forestry",
+    "version": "0.1.0",
+    "baseGameDataVersion": "1.1.0"
+  },
+  "sources": [],
+  "notes": "Wood is a new raw resource with two acquisition paths: harvested from forested planetary biomes (early game, non-renewable at the deposit level), or produced renewably by the Arboretum 5 m (mid/late game, alongside fruits and resin byproducts). No asteroids — biogenic. Can be burned directly in Coal Power's Combustion Generator 2.5 m at ~15% efficiency, or refined into charcoal via the Smelter 2.5 m (pyrolysis) for ~40% efficiency.",
+  "resources": [
+    {
+      "id": "wood",
+      "displayName": "Wood",
+      "type": "ore",
+      "mass_kg": 1,
+      "volume_liters": null,
+      "stackable": true,
+      "divisible": true,
+      "description": "Cellulose-rich plant material harvested from forested biomes or produced renewably by the Arboretum 5 m. Burns directly in Coal Power's Combustion Generator at ~15% efficiency; refines into charcoal via pyrolysis (2 wood → 1 charcoal via Smelter 2.5 m) for a much higher combustion efficiency.",
+      "gameStatus": "active",
+      "locations": {
+        "planets": [
+          { "name": "Verdure", "biomes": ["Grass", "Taiga", "Savanna", "Viridian Halo"] },
+          { "name": "Byblos", "biomes": ["Savanna"] },
+          { "name": "Kemik", "biomes": ["Savanna"] }
+        ],
+        "asteroidFields": []
+      },
+      "refinableInto": ["Charcoal"],
+      "wiki": "https://github.com/sheplu/space-engineer-2-forestry",
+      "dataGaps": [
+        "volume_liters",
+        "biome-placement-first-pass",
+        "wiki-not-yet-authored"
+      ]
+    }
+  ]
+}

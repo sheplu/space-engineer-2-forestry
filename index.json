@@ -1,0 +1,44 @@
+{
+  "version": "0.1.0",
+  "generatedAt": "2026-05-02",
+  "game": {
+    "name": "Space Engineers 2",
+    "stage": "Early Access",
+    "dataAsOf": "2026-05-02"
+  },
+  "mod": {
+    "name": "Forestry",
+    "version": "0.1.0"
+  },
+  "notes": "Machine-readable index of every dataset in this mod. Adds wood as a new raw resource, four plant-derived items (charcoal, fruits, resin, wood ash), and the Arboretum 5 m production block. Three cross-mod hooks: charcoal → Coal Power's Combustion Generator, wood ash → Stone & Concrete's Cement, and placeholder hooks for fruits → future Food mod and resin → future Plastics mod. Arboretum is gameStatus 'planned' pending VS3 water.",
+  "totalEntries": 6,
+  "datasets": [
+    {
+      "id": "raw-resources",
+      "path": "data/raw-resources.json",
+      "category": "resources",
+      "subcategory": "raw",
+      "description": "Wood — new biogenic raw resource harvestable from forested planetary biomes.",
+      "version": "0.1.0",
+      "entryCount": 1
+    },
+    {
+      "id": "items",
+      "path": "data/items.json",
+      "category": "components",
+      "subcategory": "biological",
+      "description": "Charcoal (refined fuel), fruits (Food-mod hook), resin (Plastics-mod hook), and wood ash (Cement hook).",
+      "version": "0.1.0",
+      "entryCount": 4
+    },
+    {
+      "id": "blocks-production-arboretum",
+      "path": "data/blocks/production/arboretum.json",
+      "category": "blocks",
+      "subcategory": "production/arboretum",
+      "description": "Arboretum 5 m — greenhouse production block that renewably grows wood, fruits, and resin. Requires power and water (VS3-gated).",
+      "version": "0.1.0",
+      "entryCount": 1
+    }
+  ]
+}

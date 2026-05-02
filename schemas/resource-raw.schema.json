@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/sheplu/space-engineer-2-forestry/main/schemas/resource-raw.schema.json",
+  "title": "SE2 Raw Resource Record",
+  "description": "Record shape for entries in data/raw-resources.json — ores, Ice, Stone.",
+  "type": "object",
+  "required": [
+    "id",
+    "displayName",
+    "type",
+    "mass_kg",
+    "volume_liters",
+    "stackable",
+    "divisible",
+    "description",
+    "gameStatus",
+    "locations",
+    "refinableInto",
+    "wiki",
+    "dataGaps"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9_]+$",
+      "description": "snake_case stable key used by other datasets to reference this entry."
+    },
+    "displayName": { "type": "string" },
+    "type": {
+      "type": "string",
+      "enum": ["ore", "material"]
+    },
+    "mass_kg": { "type": ["number", "null"], "minimum": 0 },
+    "volume_liters": { "type": ["number", "null"], "minimum": 0 },
+    "stackable": { "type": "boolean" },
+    "divisible": { "type": "boolean" },
+    "description": { "type": ["string", "null"] },
+    "gameStatus": {
+      "type": "string",
+      "enum": ["active", "disabled", "planned"]
+    },
+    "locations": {
+      "type": "object",
+      "required": ["planets", "asteroidFields"],
+      "properties": {
+        "planets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "biomes"],
+            "properties": {
+              "name": { "type": "string" },
+              "biomes": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            }
+          }
+        },
+        "asteroidFields": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "refinableInto": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "List of refinery-product ids this resource refines into."
+    },
+    "wiki": { "type": "string", "format": "uri" },
+    "dataGaps": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

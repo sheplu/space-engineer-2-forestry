@@ -1,0 +1,18 @@
+{
+  "name": "space-engineer-2-forestry",
+  "version": "0.1.0",
+  "description": "Forestry — a Space Engineers 2 mod dataset adding wood as a raw resource (harvestable from forested biomes or produced renewably by the Arboretum 5 m), charcoal as refined fuel (hooks into Coal Power), plus fruits and resin as byproducts (forward-hooks to future Food and Plastics mods).",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "validate": "node scripts/validate.mjs",
+    "check": "npm run validate"
+  },
+  "devDependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1"
+  }
+}

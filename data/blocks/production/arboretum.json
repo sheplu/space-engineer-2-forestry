@@ -1,0 +1,63 @@
+{
+  "version": "0.1.0",
+  "generatedAt": "2026-05-02",
+  "game": {
+    "name": "Space Engineers 2",
+    "stage": "Early Access",
+    "dataAsOf": "2026-05-02"
+  },
+  "mod": {
+    "name": "Forestry",
+    "version": "0.1.0",
+    "baseGameDataVersion": "1.1.0"
+  },
+  "sources": [],
+  "notes": "The Arboretum is a 5 m production block that grows trees under controlled conditions, producing wood, fruits, and resin as joint renewable outputs (matches Petroleum Power's joint-product refinery pattern). Unlike every previous production block in the mod family, the Arboretum CONSUMES fluid water (VS3) alongside electrical power, not just power. The base block schema has no `inputs` field for fluids — fuel.consumesId is semantically wrong for water (water is not fuel). Per the plan, water consumption is documented in the description and flagged in dataGaps; the block is set to gameStatus 'planned' until VS3 ships water, matching the `water` entry in base-game data/fluids.json. When VS3 ships and the block schema is extended with a proper `inputs` array for fluid consumption, flip gameStatus to 'active' and populate the inputs field.",
+  "resources": [
+    {
+      "id": "arboretum_5_m",
+      "displayName": "Arboretum 5 m",
+      "type": "block",
+      "subcategory": "production",
+      "powerRole": "consumer",
+      "size_m": 5,
+      "mass_kg": 6000,
+      "health": 4800,
+      "pcu": 80,
+      "snapSize": 10,
+      "description": "Enclosed-greenhouse production block that cultivates trees under controlled lighting, temperature, and irrigation. Produces wood, fruits, and resin as joint renewable outputs. Requires sustained electrical power (grow lights, climate control, pumps) and water (VS3) — the latter is why gameStatus is currently 'planned' until VS3 ships. Growth rate is continuous-trickle rather than batched, matching how a greenhouse behaves in real agriculture.",
+      "gameStatus": "planned",
+      "buildComponents": [
+        { "id": "steel_plate", "qty": 48 },
+        { "id": "glass", "qty": 40 },
+        { "id": "motor", "qty": 6 },
+        { "id": "pressure_pipe", "qty": 8 },
+        { "id": "electronic_parts", "qty": 12 },
+        { "id": "wire", "qty": 20 }
+      ],
+      "power": {
+        "maxInput": 8000,
+        "unit": "W",
+        "unitAsPublished": "W"
+      },
+      "production": {
+        "maxQueueSize": 0,
+        "efficiencyMultiplier": 1,
+        "speedMultiplier": 1,
+        "producesIds": ["wood", "fruits", "resin"]
+      },
+      "inventory": {
+        "maxMass_kg": 8000
+      },
+      "unlock": "Verdure sector, 60% contract progress (pending VS3)",
+      "wiki": "https://github.com/sheplu/space-engineer-2-forestry",
+      "dataGaps": [
+        "water-input-not-in-schema-pending-VS3-and-schema-extension",
+        "tree-growth-rate-tbd-continuous-not-batched",
+        "production.maxQueueSize-zero-because-output-is-trickle-not-queue",
+        "balance-first-pass",
+        "wiki-not-yet-authored"
+      ]
+    }
+  ]
+}

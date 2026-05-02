@@ -1,0 +1,149 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/sheplu/space-engineer-2-forestry/main/schemas/resource-block.schema.json",
+  "title": "SE2 Block Record",
+  "description": "Record shape for every block in data/blocks/**. Blocks share a core (id, physical stats, buildComponents, unlock, wiki) and add subcategory-specific fields (power, production, thrust, inventory, door, terminal, fuel, efficiency, etc.). The schema accepts those optional fields but doesn't enforce which subcategory owns which field — callers should rely on `subcategory` to know what to expect.",
+  "type": "object",
+  "required": [
+    "id",
+    "displayName",
+    "type",
+    "subcategory",
+    "size_m",
+    "mass_kg",
+    "health",
+    "pcu",
+    "snapSize",
+    "description",
+    "gameStatus",
+    "buildComponents",
+    "unlock",
+    "wiki",
+    "dataGaps"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9_]+$" },
+    "displayName": { "type": "string" },
+    "type": { "type": "string", "const": "block" },
+    "subcategory": { "type": "string" },
+    "size_m": { "type": ["number", "null"], "minimum": 0 },
+    "mass_kg": { "type": ["number", "null"], "minimum": 0 },
+    "health": { "type": ["number", "null"], "minimum": 0 },
+    "pcu": { "type": ["integer", "null"], "minimum": 0 },
+    "snapSize": { "type": ["number", "null"], "minimum": 0 },
+    "description": { "type": ["string", "null"] },
+    "gameStatus": {
+      "type": "string",
+      "enum": ["active", "disabled", "planned"]
+    },
+    "buildComponents": {
+      "type": "array",
+      "description": "On-site welding recipe. Empty array allowed for planned stubs.",
+      "items": {
+        "type": "object",
+        "required": ["id", "qty"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9_]+$" },
+          "qty": { "type": "number", "minimum": 0 },
+          "qtyOptional": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Extra welding phase quantity — the component total beyond the base qty needed to bring the block to full health."
+          }
+        }
+      }
+    },
+    "unlock": { "type": ["string", "null"] },
+    "wiki": { "type": "string", "format": "uri" },
+    "dataGaps": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "power": {
+      "type": "object",
+      "properties": {
+        "maxInput": { "type": ["number", "null"] },
+        "maxOutput": { "type": ["number", "null"] },
+        "unit": { "type": ["string", "null"] },
+        "unitAsPublished": { "type": ["string", "null"] }
+      }
+    },
+    "production": {
+      "type": "object",
+      "properties": {
+        "maxQueueSize": { "type": ["integer", "null"] },
+        "efficiencyMultiplier": { "type": ["number", "null"] },
+        "speedMultiplier": { "type": ["number", "null"] },
+        "producesIds": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "inventory": {
+      "type": ["object", "null"],
+      "properties": {
+        "maxMass_kg": { "type": ["number", "null"] },
+        "inputMass_kg": { "type": ["number", "null"] },
+        "outputMass_kg": { "type": ["number", "null"] },
+        "unlimited": { "type": "boolean" },
+        "maxMass_kg_raw": { "type": "number" }
+      }
+    },
+    "thrust": {
+      "type": "object",
+      "properties": {
+        "max_N": { "type": ["number", "null"] }
+      }
+    },
+    "efficiency": {
+      "type": "object",
+      "properties": {
+        "atmosphere": { "type": ["number", "null"] },
+        "space": { "type": ["number", "null"] }
+      }
+    },
+    "fuel": {
+      "type": "object",
+      "properties": {
+        "consumesId": { "type": ["string", "null"] },
+        "rate": { "type": ["number", "null"] }
+      }
+    },
+    "door": {
+      "type": "object",
+      "properties": {
+        "pressurized": { "type": ["boolean", "null"] },
+        "openTimeSeconds": { "type": ["number", "null"] }
+      }
+    },
+    "terminal": {
+      "type": "object",
+      "properties": {
+        "function": { "type": ["string", "null"] }
+      }
+    },
+    "armorTier": {
+      "type": "string",
+      "enum": ["light", "heavy"]
+    },
+    "armorShape": { "type": "string" },
+    "windowShape": { "type": "string" },
+    "wallShape": { "type": ["string", "null"] },
+    "structuralRole": { "type": "string" },
+    "structuralShape": { "type": ["string", "null"] },
+    "furnitureRole": { "type": "string" },
+    "controlRole": { "type": "string" },
+    "terminalRole": { "type": "string" },
+    "doorRole": { "type": "string" },
+    "thrusterType": { "type": "string" },
+    "powerRole": { "type": "string" },
+    "lightRole": { "type": "string" },
+    "detectionRole": { "type": "string" },
+    "dockingRole": { "type": "string" },
+    "mechanicalRole": { "type": "string" },
+    "conveyorRole": { "type": "string" },
+    "storageRole": { "type": "string" },
+    "lifeSupportRole": { "type": "string" }
+  }
+}
